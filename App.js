@@ -9,6 +9,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 import {createAppContainer} from 'react-navigation';
 import Home from './src/Home';
 import Settings from './src/Settings';
+import Trails from './src/Trails';
 import React, {Component} from 'react';
 import {
   SafeAreaView,
@@ -31,6 +32,7 @@ const Navigator = createStackNavigator(
   {
     Settings,
     Home,
+    Trails,
   },
   {initialRouteName: 'Home'},
 );
@@ -78,4 +80,3 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
 });
-

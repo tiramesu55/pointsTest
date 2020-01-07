@@ -30,7 +30,8 @@ import {
   Title,
   StyleProvider,
 } from 'native-base';
-const TRACKER_HOST = 'http://tracker.transistorsoft.com/locations/tiramesu55';
+const TRACKER_HOST =
+  'https://us-central1-mountain-ace.cloudfunctions.net/locations';
 export default class Home extends Component {
   static navigationOptions = {title: 'home'};
   constructor(props) {
@@ -75,6 +76,7 @@ export default class Home extends Component {
     }
   }
   componentDidMount() {
+    BackgroundGeolocation.reset();
     BackgroundGeolocation.onHttp(this.onHttp.bind(this));
     BackgroundGeolocation.onHeartbeat(this.onHeartbeat.bind(this));
     BackgroundGeolocation.onConnectivityChange(event => {
@@ -119,6 +121,10 @@ export default class Home extends Component {
       },
     );
   }
+  goTrailPress = () => {
+    this.onToggleEnabled();
+    this.navigation.navigate('Trails');
+  };
   render() {
     return (
       <Container>
@@ -128,6 +134,11 @@ export default class Home extends Component {
             value={this.state.enabled}
           />
         </Right>
+        <Card>
+          <Button block info onPress={this.goTrailPress}>
+            <Text> Trails </Text>
+          </Button>
+        </Card>
         <Card>
           <Button
             block
